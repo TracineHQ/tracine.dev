@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracine — Infrastructure for safe, observable AI development</title>
+    <meta name="description" content="Open-source tools that make AI coding agents safer, more transparent, and easier to trust. Security hooks, session analytics, and SAST triage.">
+    <meta property="og:title" content="Tracine">
+    <meta property="og:description" content="Infrastructure for safe, observable AI development">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tracine.dev">
+    <meta property="og:image" content="https://tracine.dev/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">tracine</a>
+            <div class="nav-links">
+                <a href="#products">Products</a>
+                <a href="https://github.com/TracineHQ" target="_blank" rel="noopener">GitHub</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Infrastructure for safe, observable<br>AI development</h1>
+            <p class="subtitle">Open-source tools that make AI coding agents safer, more transparent, and easier to trust in production workflows.</p>
+        </section>
+
+        <section id="products" class="products">
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-badge available">Available</span>
+                    <h2>tracine-guard</h2>
+                </div>
+                <p class="product-desc">Production-grade security hooks for Claude Code. Validates bash commands, protects credentials, enforces git safety, scopes subagents.</p>
+                <div class="product-stats">
+                    <span>440+ tests</span>
+                    <span>Zero deps</span>
+                    <span>Claude Code plugin</span>
+                </div>
+                <div class="install-block">
+                    <code>/plugin marketplace add TracineHQ/tracine-guard</code>
+                </div>
+                <a href="https://github.com/TracineHQ/tracine-guard" class="product-link" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="product-badge available">Available</span>
+                    <h2>tracine-convo</h2>
+                </div>
+                <p class="product-desc">Behavioral analytics CLI for AI coding sessions. Indexes conversation logs into SQLite, queries tool calls, mines anti-patterns, tracks session velocity.</p>
+                <div class="product-stats">
+                    <span>2,890 lines of tests</span>
+                    <span>Zero deps</span>
+                    <span>PyPI + Plugin</span>
+                </div>
+                <div class="install-block">
+                    <code>pip install tracine-convo</code>
+                </div>
+                <a href="https://github.com/TracineHQ/tracine-convo" class="product-link" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+
+            <div class="product-card coming-soon">
+                <div class="product-header">
+                    <span class="product-badge soon">Coming Soon</span>
+                    <h2>triage</h2>
+                </div>
+                <p class="product-desc">AI-assisted SAST triage. Prioritizes static analysis findings with LLM reasoning, reduces false positive noise, accelerates security review.</p>
+                <div class="product-stats">
+                    <span>LangGraph pipeline</span>
+                    <span>Multi-tool SAST</span>
+                    <span>PyPI</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="principles">
+            <h2>Why Tracine</h2>
+            <div class="principles-grid">
+                <div class="principle">
+                    <h3>Safe by default</h3>
+                    <p>Pre-built guardrails that validate every tool call before execution. Block dangerous commands, protect credentials, enforce git discipline.</p>
+                </div>
+                <div class="principle">
+                    <h3>Observable</h3>
+                    <p>Query what your AI agent actually did, not what it said it did. Full-text search across sessions, anti-pattern detection, velocity tracking.</p>
+                </div>
+                <div class="principle">
+                    <h3>Zero dependencies</h3>
+                    <p>Pure Python stdlib. No bloat, no supply chain risk, no transitive vulnerabilities. Install and trust.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <span>Tracine</span>
+            <span><a href="https://github.com/TracineHQ" target="_blank" rel="noopener">GitHub</a></span>
+            <span>Apache 2.0</span>
+        </div>
+    </footer>
+</body>
+</html>

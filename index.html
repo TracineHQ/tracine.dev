@@ -12,98 +12,167 @@
     <meta property="og:image" content="https://tracine.dev/og.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://tracine.dev/">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Tracine",
+        "url": "https://tracine.dev",
+        "logo": "https://tracine.dev/favicon.png",
+        "description": "Infrastructure for safe, observable AI development.",
+        "sameAs": ["https://github.com/TracineHQ"]
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#0a0a0a',
+                        card: '#141414',
+                        'card-hover': '#1a1a1a',
+                        border: '#2a2a2a',
+                        text: '#e0e0e0',
+                        muted: '#808080',
+                        accent: '#6ee7b7',
+                        'accent-dim': '#2d6a4f',
+                        code: '#1e1e1e',
+                        soon: '#f59e0b',
+                    },
+                    fontFamily: {
+                        mono: ['SF Mono', 'Fira Code', 'Cascadia Code', 'monospace'],
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'system-ui', 'sans-serif'],
+                    },
+                    maxWidth: {
+                        container: '1200px',
+                    },
+                },
+            },
+        };
+    </script>
 </head>
-<body>
-    <header>
-        <nav>
-            <a href="/" class="logo">tracine</a>
-            <div class="nav-links">
-                <a href="#products">Products</a>
-                <a href="https://github.com/TracineHQ" target="_blank" rel="noopener">GitHub</a>
+<body class="bg-bg text-text font-sans leading-relaxed min-h-screen antialiased">
+    <header class="border-b border-border/40">
+        <nav class="w-full max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <a href="/" class="font-mono text-lg sm:text-xl font-semibold text-accent tracking-tight rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg">tracine</a>
+            <div class="flex gap-4 sm:gap-8">
+                <a href="#products" class="text-muted text-sm transition-colors hover:text-text focus-visible:outline-none focus-visible:text-text">Products</a>
+                <a href="#why" class="text-muted text-sm transition-colors hover:text-text focus-visible:outline-none focus-visible:text-text">Why</a>
+                <a href="https://github.com/TracineHQ" target="_blank" rel="noopener" class="text-muted text-sm transition-colors hover:text-text focus-visible:outline-none focus-visible:text-text">GitHub</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <section class="hero">
-            <h1>Infrastructure for safe, observable<br>AI development</h1>
-            <p class="subtitle">Open-source tools that make AI coding agents safer, more transparent, and easier to trust in production workflows.</p>
+        <section class="w-full max-w-container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-28 pb-12 sm:pb-16 text-center">
+            <h1 class="font-mono font-bold leading-tight tracking-tight text-2xl sm:text-4xl lg:text-5xl mb-5 sm:mb-6">
+                Infrastructure for safe, observable<br class="hidden sm:inline"> AI development
+            </h1>
+            <p class="text-muted text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                Open-source tools that make AI coding agents safer, more transparent, and easier to trust in production workflows.
+            </p>
         </section>
 
-        <section id="products" class="products">
-            <div class="product-card">
-                <div class="product-header">
-                    <span class="product-badge available">Available</span>
-                    <h2>Guard</h2>
-                </div>
-                <p class="product-desc">Stdlib-only safety hooks for Claude Code. Validates bash commands, protects credentials, enforces git discipline, scopes subagents, and guards protected files.</p>
-                <div class="product-stats">
-                    <span>1060 tests</span>
-                    <span>Zero deps</span>
-                    <span>Claude Code plugin</span>
-                </div>
-                <div class="install-block">
-                    <code>/plugin marketplace add TracineHQ/guard</code>
-                </div>
-                <a href="https://github.com/TracineHQ/guard" class="product-link" target="_blank" rel="noopener">View on GitHub</a>
-            </div>
+        <section id="products" class="w-full max-w-container mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 scroll-mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 
-            <div class="product-card">
-                <div class="product-header">
-                    <span class="product-badge available">Available</span>
-                    <h2>Convo</h2>
-                </div>
-                <p class="product-desc">SQLite-backed analytics CLI for AI coding sessions. Indexes session logs, full-text search across transcripts, tool-call analytics, and atomic snapshot/restore.</p>
-                <div class="product-stats">
-                    <span>438 tests</span>
-                    <span>Zero deps</span>
-                    <span>Claude Code plugin</span>
-                </div>
-                <div class="install-block">
-                    <code>/plugin marketplace add TracineHQ/convo</code>
-                </div>
-                <a href="https://github.com/TracineHQ/convo" class="product-link" target="_blank" rel="noopener">View on GitHub</a>
-            </div>
+                <!-- Guard -->
+                <article class="bg-card border border-border rounded-xl p-6 sm:p-8 transition-colors hover:bg-card-hover hover:border-accent-dim flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-[0.7rem] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-accent-dim text-accent">Available</span>
+                        <h2 class="font-mono text-lg sm:text-xl font-semibold tracking-tight">Guard</h2>
+                    </div>
+                    <p class="text-muted text-sm sm:text-[0.95rem] mb-5 leading-relaxed">Stdlib-only safety hooks for Claude Code. Validates bash commands, protects credentials, enforces git discipline, scopes subagents, and guards protected files.</p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Zero deps</span>
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Claude Code plugin</span>
+                    </div>
+                    <div class="bg-code border border-border rounded-lg px-3 sm:px-4 py-3 mb-5 overflow-x-auto space-y-1.5 mt-auto">
+                        <code class="block font-mono text-xs sm:text-sm text-accent whitespace-nowrap">/plugin marketplace add TracineHQ/plugins</code>
+                        <code class="block font-mono text-xs sm:text-sm text-accent whitespace-nowrap">/plugin install guard@tracine</code>
+                    </div>
+                    <a href="https://github.com/TracineHQ/guard" target="_blank" rel="noopener" class="text-muted text-sm border-b border-border self-start transition-colors hover:text-accent hover:border-accent">View on GitHub</a>
+                </article>
 
-            <div class="product-card coming-soon">
-                <div class="product-header">
-                    <span class="product-badge soon">Coming Soon</span>
-                    <h2>triage</h2>
-                </div>
-                <p class="product-desc">AI-assisted SAST triage. Prioritizes static analysis findings with LLM reasoning, reduces false positive noise, accelerates security review.</p>
-                <div class="product-stats">
-                    <span>LangGraph pipeline</span>
-                    <span>Multi-tool SAST</span>
-                    <span>Open source</span>
-                </div>
+                <!-- Convo -->
+                <article class="bg-card border border-border rounded-xl p-6 sm:p-8 transition-colors hover:bg-card-hover hover:border-accent-dim flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-[0.7rem] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-accent-dim text-accent">Available</span>
+                        <h2 class="font-mono text-lg sm:text-xl font-semibold tracking-tight">Convo</h2>
+                    </div>
+                    <p class="text-muted text-sm sm:text-[0.95rem] mb-5 leading-relaxed">SQLite-backed analytics CLI for AI coding sessions. Indexes session logs, full-text search across transcripts, tool-call analytics, and atomic snapshot/restore.</p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Zero deps</span>
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Claude Code plugin</span>
+                    </div>
+                    <div class="bg-code border border-border rounded-lg px-3 sm:px-4 py-3 mb-5 overflow-x-auto space-y-1.5 mt-auto">
+                        <code class="block font-mono text-xs sm:text-sm text-accent whitespace-nowrap">/plugin marketplace add TracineHQ/plugins</code>
+                        <code class="block font-mono text-xs sm:text-sm text-accent whitespace-nowrap">/plugin install convo@tracine</code>
+                    </div>
+                    <a href="https://github.com/TracineHQ/convo" target="_blank" rel="noopener" class="text-muted text-sm border-b border-border self-start transition-colors hover:text-accent hover:border-accent">View on GitHub</a>
+                </article>
+
+                <!-- eval-kit -->
+                <article class="bg-card border border-border rounded-xl p-6 sm:p-8 opacity-70 transition-opacity hover:opacity-90 flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-[0.7rem] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-[#3d2e0a] text-soon">Coming Soon</span>
+                        <h2 class="font-mono text-lg sm:text-xl font-semibold tracking-tight">eval-kit</h2>
+                    </div>
+                    <p class="text-muted text-sm sm:text-[0.95rem] mb-5 leading-relaxed">Opinionated LLM evaluation toolkit. Statistical scoring, regression detection, no external runner dependency.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Statistical scoring</span>
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Claude Code skill</span>
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Open source</span>
+                    </div>
+                </article>
+
+                <!-- triage -->
+                <article class="bg-card border border-border rounded-xl p-6 sm:p-8 opacity-70 transition-opacity hover:opacity-90 flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-[0.7rem] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-[#3d2e0a] text-soon">Coming Soon</span>
+                        <h2 class="font-mono text-lg sm:text-xl font-semibold tracking-tight">triage</h2>
+                    </div>
+                    <p class="text-muted text-sm sm:text-[0.95rem] mb-5 leading-relaxed">AI-assisted SAST triage. Prioritizes static analysis findings with LLM reasoning, reduces false positive noise, accelerates security review.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">LangGraph pipeline</span>
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Multi-tool SAST</span>
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Open source</span>
+                    </div>
+                </article>
+
             </div>
         </section>
 
-        <section class="principles">
-            <h2>Why Tracine</h2>
-            <div class="principles-grid">
-                <div class="principle">
-                    <h3>Safe by default</h3>
-                    <p>Pre-built guardrails that validate every tool call before execution. Block dangerous commands, protect credentials, enforce git discipline.</p>
+        <section id="why" class="w-full max-w-container mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 scroll-mt-16">
+            <h2 class="font-mono text-xl sm:text-2xl font-semibold mb-8 sm:mb-10 text-center tracking-tight">Why Tracine</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div>
+                    <h3 class="text-base font-semibold mb-2 text-accent">Safe by default</h3>
+                    <p class="text-muted text-sm leading-relaxed">Pre-built guardrails that validate every tool call before execution. Block dangerous commands, protect credentials, enforce git discipline.</p>
                 </div>
-                <div class="principle">
-                    <h3>Observable</h3>
-                    <p>Query what your AI agent actually did, not what it said it did. Full-text search across sessions, tool-call analytics, atomic snapshots.</p>
+                <div>
+                    <h3 class="text-base font-semibold mb-2 text-accent">Observable</h3>
+                    <p class="text-muted text-sm leading-relaxed">Query what your AI agent actually did, not what it said it did. Full-text search across sessions, tool-call analytics, atomic snapshots.</p>
                 </div>
-                <div class="principle">
-                    <h3>Zero dependencies</h3>
-                    <p>Pure Python stdlib. No bloat, no supply chain risk, no transitive vulnerabilities. Install and trust.</p>
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <h3 class="text-base font-semibold mb-2 text-accent">Zero dependencies</h3>
+                    <p class="text-muted text-sm leading-relaxed">Pure Python stdlib. No bloat, no supply chain risk, no transitive vulnerabilities. Install and trust.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
+    <footer class="border-t border-border mt-12 sm:mt-16">
+        <div class="w-full max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-6 text-sm text-muted">
             <span>Tracine</span>
-            <span><a href="https://github.com/TracineHQ" target="_blank" rel="noopener">GitHub</a></span>
+            <span class="hidden sm:inline">·</span>
+            <a href="https://github.com/TracineHQ" target="_blank" rel="noopener" class="text-muted transition-colors hover:text-text">GitHub</a>
+            <span class="hidden sm:inline">·</span>
             <span>Apache 2.0</span>
+            <span class="hidden sm:inline">·</span>
+            <span>built by <a href="https://github.com/AnthonyLedesma" target="_blank" rel="noopener" class="text-muted transition-colors hover:text-text">@AnthonyLedesma</a></span>
         </div>
     </footer>
 </body>

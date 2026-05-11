@@ -40,6 +40,8 @@
                         'accent-dim': '#2d6a4f',
                         code: '#1e1e1e',
                         soon: '#f59e0b',
+                        alpha: '#67e8f9',
+                        'alpha-dim': '#155e75',
                     },
                     fontFamily: {
                         mono: ['SF Mono', 'Fira Code', 'Cascadia Code', 'monospace'],
@@ -114,18 +116,25 @@
                     <a href="https://github.com/TracineHQ/convo" target="_blank" rel="noopener" class="text-muted text-sm border-b border-border self-start transition-colors hover:text-accent hover:border-accent">View on GitHub</a>
                 </article>
 
+                <!-- separator: stable above, early below -->
+                <div class="col-span-full flex items-center gap-4 my-2 sm:my-4" aria-hidden="true">
+                    <div class="flex-1 h-px bg-border"></div>
+                    <span class="text-xs font-mono uppercase tracking-widest text-muted">In progress</span>
+                    <div class="flex-1 h-px bg-border"></div>
+                </div>
+
                 <!-- eval-kit -->
-                <article class="bg-card border border-border rounded-xl p-6 sm:p-8 opacity-70 transition-opacity hover:opacity-90 flex flex-col">
+                <article class="bg-card border border-border rounded-xl p-6 sm:p-8 transition-colors hover:bg-card-hover hover:border-accent-dim flex flex-col">
                     <div class="flex items-center gap-3 mb-4">
-                        <span class="text-[0.7rem] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-[#3d2e0a] text-soon">Coming Soon</span>
+                        <span class="text-[0.7rem] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-alpha-dim text-alpha">Alpha</span>
                         <h2 class="font-mono text-lg sm:text-xl font-semibold tracking-tight">eval-kit</h2>
                     </div>
-                    <p class="text-muted text-sm sm:text-[0.95rem] mb-5 leading-relaxed">Opinionated LLM evaluation toolkit. Statistical scoring, regression detection, no external runner dependency.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Statistical scoring</span>
-                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Claude Code skill</span>
-                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">Open source</span>
+                    <p class="text-muted text-sm sm:text-[0.95rem] mb-5 leading-relaxed">Statistical confidence for LLM evaluation. Welch's t-test, Glass's delta, power analysis. Zero-dep JavaScript, scipy-backed Python, cross-validated on every commit.</p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">JS + Python</span>
+                        <span class="text-xs text-muted bg-code px-2.5 py-1 rounded border border-border">scipy-validated</span>
                     </div>
+                    <a href="https://github.com/TracineHQ/eval-kit" target="_blank" rel="noopener" class="text-muted text-sm border-b border-border self-start transition-colors hover:text-accent hover:border-accent">View on GitHub</a>
                 </article>
 
                 <!-- triage -->
@@ -149,16 +158,16 @@
             <h2 class="font-mono text-xl sm:text-2xl font-semibold mb-8 sm:mb-10 text-center tracking-tight">Why Tracine</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <div>
-                    <h3 class="text-base font-semibold mb-2 text-accent">Safe by default</h3>
-                    <p class="text-muted text-sm leading-relaxed">Pre-built guardrails that validate every tool call before execution. Block dangerous commands, protect credentials, enforce git discipline.</p>
+                    <h3 class="text-base font-semibold mb-2 text-accent">Pre-execution, not post-mortem</h3>
+                    <p class="text-muted text-sm leading-relaxed">Guard's hooks fire before the tool call. Block dangerous shell commands, credential exfiltration, and edits to protected files before they execute, not after.</p>
                 </div>
                 <div>
-                    <h3 class="text-base font-semibold mb-2 text-accent">Observable</h3>
-                    <p class="text-muted text-sm leading-relaxed">Query what your AI agent actually did, not what it said it did. Full-text search across sessions, tool-call analytics, atomic snapshots.</p>
+                    <h3 class="text-base font-semibold mb-2 text-accent">Receipts, not recall</h3>
+                    <p class="text-muted text-sm leading-relaxed">Every Guard decision writes to JSONL. Every session writes to SQLite. Full-text search across what your agent actually did, not what it claimed it did.</p>
                 </div>
                 <div class="sm:col-span-2 lg:col-span-1">
-                    <h3 class="text-base font-semibold mb-2 text-accent">Zero dependencies</h3>
-                    <p class="text-muted text-sm leading-relaxed">Pure Python stdlib. No bloat, no supply chain risk, no transitive vulnerabilities. Install and trust.</p>
+                    <h3 class="text-base font-semibold mb-2 text-accent">Math, not vibes</h3>
+                    <p class="text-muted text-sm leading-relaxed">Real statistics for LLM comparison. Welch's t-test, Glass's delta, power analysis. Cross-validated against scipy on every commit.</p>
                 </div>
             </div>
         </section>

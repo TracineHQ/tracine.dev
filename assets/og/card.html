@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--
   GitHub social preview renderer. 1280x640 CSS px, captured at deviceScaleFactor 2 => 2560x1280.
-  ?p=guard|convo|convostats|evalkit|tracine   ?style=phosphor (lead) | quiet (alternative)
+  ?p=guard|convo|convostats|evalkit|plugins|tracine   ?style=phosphor (lead) | quiet (alternative)
   Terminal text is real output: guard 1.5.0 (always-deny path), convo 2.0.1, eval-kit 0.1.0 README example.
 -->
 <style>
@@ -81,13 +81,13 @@ const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;
 const cards = {
   guard: {
     name: 'guard', size: 150, tier: 'available',
-    desc: 'security hooks for Claude Code',
+    desc: 'safety hooks for Claude Code',
     tagline: 'Pre-execution, not <em>post-mortem.</em>',
     bar: ['claude code', 'guard 1.5.0'], scrSize: 23.5,
     // guard 1.5.0: `rm -rf /` hits the always-deny list (registry.py:749-751). No em dash in this path.
     scr:
 `<span class="hi">⏺</span> Bash(rm -rf /)
-  <span class="lo">⎿</span>  Error: guard
+  <span class="lo" style="display:inline-block;width:1ch">⎿</span>  Error: guard
      <span class="lo">[permission_mode=default]</span>
      <span class="rev">denied: bash.always_deny.</span>
      <span class="lo">Blocked: \`rm -rf /\` is on the
@@ -139,8 +139,8 @@ const cards = {
     name: 'eval-kit', size: 112, tier: 'beta',
     desc: 'eval statistics for Claude Code',
     tagline: 'Math, not <em>vibes.</em>',
-    bar: ['zsh', 'eval-kit 0.1.0'], scrSize: 18,
-    // eval-kit 0.1.0 README "Command line" example, verbatim. NOT on public main (b9ad0d8) yet.
+    bar: ['zsh', 'eval-kit 0.1.0'], scrSize: 16,
+    // eval-kit 0.1.0 README "Command line" example, verbatim.
     scr:
 `<span class="lo">$</span> eval-kit compare --baseline base.json \\
     --variant new.json --target 3
@@ -155,6 +155,22 @@ const cards = {
 <span class="rev">CAN'T TELL YET.</span> The 95% CI includes both no change and a 3-point shift.
 Resolving it takes 16 runs per arm at the spread seen so far; you have 4.`,
     proof: "<span class=\"hl\">CAN'T TELL YET.</span> 16 runs per arm"
+  },
+  plugins: {
+    name: 'plugins', size: 128,
+    desc: 'plugin marketplace for Claude Code',
+    tagline: 'Add once, <em>install any.</em>',
+    bar: ['claude code', 'tracine marketplace'], scrSize: 21,
+    // plugins README install block, verbatim. CI installs the same plugins from a local checkout on ubuntu + macos.
+    // The first command is one line in Claude Code; it breaks here only to fit the screen.
+    scr:
+`<span class="lo">&gt;</span> /plugin marketplace add
+    <span class="rev">TracineHQ/plugins</span>
+
+<span class="lo">&gt;</span> /plugin install <span class="hi">guard</span>@tracine
+<span class="lo">&gt;</span> /plugin install <span class="hi">convo</span>@tracine
+<span class="lo">&gt;</span> /plugin install <span class="hi">eval-kit</span>@tracine`,
+    proof: '/plugin marketplace add <span class="hl">TracineHQ/plugins</span>'
   },
   tracine: {
     org: true, name: 'tracine', size: 124,

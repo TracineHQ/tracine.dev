@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  GitHub social preview renderer. 1280x640 CSS px, captured at deviceScaleFactor 2 => 2560x1280.
+  ?p=guard|convo|convostats|evalkit|tracine   ?style=phosphor (lead) | quiet (alternative)
+  Terminal text is real output: guard 1.5.0 (always-deny path), convo 2.0.1, eval-kit 0.1.0 README example.
+-->
+<style>
+@font-face{font-family:"Inter";src:url("../fonts/inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900}
+@font-face{font-family:"JetBrains Mono";src:url("../fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2");font-weight:100 800}
+:root{
+  --bg:#0f0e0c; --surface:#191714; --fg:#eae7e1; --muted:#a29d96; --faint:#302d29;
+  --phosphor:#ffb641; --phosphor-hi:#fed579; --phosphor-lo:#ba7e23; --phosphor-ink:#2a1500;
+  --ok:#6ee7b7; --ok-dim:#285f47; --beta:#67e8f9; --beta-dim:#155e75;
+  --glass:#201a12;
+  --sans:"Inter",sans-serif; --mono:"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1280px;height:640px;overflow:hidden;background:var(--bg)}
+body{position:relative;color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.glow{position:absolute;inset:0;background:radial-gradient(70% 90% at 100% 0%,rgba(255,182,65,.10),transparent 60%),radial-gradient(50% 60% at 0% 100%,rgba(255,182,65,.05),transparent 70%)}
+
+/* ---------- phosphor (lead) ---------- */
+.ph{position:absolute;inset:0;display:grid;grid-template-columns:540px 1fr;gap:44px;padding:60px 64px 56px 72px}
+.ph .left{display:flex;flex-direction:column;min-width:0}
+.owner{display:flex;align-items:center;gap:14px;font:500 28px/1 var(--mono);color:var(--muted);letter-spacing:-.01em}
+.owner svg{width:34px;height:37px;color:var(--phosphor)}
+.name{font:700 var(--name-size,128px)/.95 var(--mono);letter-spacing:-.045em;color:var(--phosphor);margin:26px 0 22px;white-space:nowrap}
+.desc{font:500 34px/1.22 var(--sans);color:var(--fg);letter-spacing:-.01em;max-width:13em;text-wrap:balance}
+.badge{display:inline-flex;align-items:center;gap:12px;align-self:flex-start;margin-top:26px;font:700 21px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:10px 14px;border-radius:6px}
+.badge::before{content:"";width:13px;height:13px;background:currentColor;border-radius:2px}
+.b-available{background:var(--ok-dim);color:var(--ok)}
+.b-beta{background:var(--beta-dim);color:var(--beta)}
+.b-beta::before{background:linear-gradient(90deg,currentColor 50%,transparent 50%);box-shadow:inset 0 0 0 2px currentColor}
+.tagline{margin-top:auto;font:650 38px/1.15 var(--sans);letter-spacing:-.02em;color:var(--fg)}
+.tagline em{font-style:normal;color:var(--phosphor-hi);white-space:nowrap}
+.right{display:flex;flex-direction:column;justify-content:center;min-width:0;padding-bottom:36px}
+.crt{flex:none;display:flex;flex-direction:column;border-radius:18px;padding:7px;background:linear-gradient(180deg,#26211a,#14120f);border:1px solid var(--faint);box-shadow:0 40px 90px -50px rgba(255,182,65,.35)}
+.glass{position:relative;border-radius:12px;overflow:hidden;background:radial-gradient(120% 90% at 30% 15%,var(--glass),var(--bg) 85%);border:1px solid #000}
+.glass::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,182,65,.04) 0 2px,transparent 2px 5px)}
+.bar{display:flex;justify-content:space-between;padding:14px 22px;border-bottom:1px solid rgba(255,182,65,.14);font:600 15px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--phosphor-lo)}
+.scr{padding:20px 24px;font:500 var(--scr-size,20px)/1.5 var(--mono);color:var(--phosphor);white-space:pre-wrap;text-shadow:0 0 8px rgba(255,182,65,.45)}
+.hi{color:var(--phosphor-hi)} .lo{color:var(--phosphor-lo)}
+.rev{background:var(--phosphor);color:var(--phosphor-ink);text-shadow:none;padding:1px 6px;margin-left:-6px;font-weight:700}
+.cur{display:inline-block;width:.6em;height:1.05em;vertical-align:-.15em;background:var(--phosphor)}
+.foot{position:absolute;right:64px;bottom:52px;font:500 22px/1 var(--mono);color:var(--muted)}
+
+/* org card */
+.org .name{margin:30px 0 26px}
+.org .desc{font-size:38px;max-width:12.5em}
+.pillars{margin-top:auto;font:600 19px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.pillars b{color:var(--phosphor);font-weight:600}
+
+/* ---------- quiet (alternative) ---------- */
+.qt{position:absolute;inset:0;padding:64px 80px 60px;display:flex;flex-direction:column}
+.qt .top{display:flex;justify-content:space-between;align-items:center}
+.qt .owner{font-size:30px}
+.qt .badge{margin:0}
+.qt .name{--name-size:184px;margin:34px 0 18px;line-height:.9}
+.qt .desc{font-size:42px;max-width:none;color:var(--muted);font-weight:500}
+.qt .proof{margin-top:30px;align-self:flex-start;font:600 34px/1.2 var(--mono);color:var(--fg);padding:6px 0 6px 22px;border-left:5px solid var(--phosphor)}
+.qt .proof .hl{color:var(--phosphor-hi)}
+.qt .bottom{margin-top:auto;display:flex;justify-content:space-between;align-items:baseline}
+.qt .tagline{margin:0;font-size:44px}
+.qt .url{font:500 26px/1 var(--mono);color:var(--muted)}
+.qt.org .name{--name-size:196px}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div id="root"></div>
+<script>
+const q = new URLSearchParams(location.search);
+const P = q.get('p') || 'guard';
+const S = q.get('style') || 'phosphor';
+const MARK = '<svg viewBox="0 0 54 58" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><circle cx="27" cy="9" r="6.5" fill="currentColor" stroke="none"/><circle cx="11" cy="34" r="6" fill="currentColor" stroke="none"/><circle cx="43" cy="34" r="6" fill="currentColor" stroke="none"/><circle cx="27" cy="50" r="5.5" fill="currentColor" stroke="none"/><path d="M27 9 11 34M27 9l16 25M11 34l16 16M43 34 27 50"/></svg>';
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+const cards = {
+  guard: {
+    name: 'guard', size: 150, tier: 'available',
+    desc: 'security hooks for Claude Code',
+    tagline: 'Pre-execution, not <em>post-mortem.</em>',
+    bar: ['claude code', 'guard 1.5.0'], scrSize: 23.5,
+    // guard 1.5.0: `rm -rf /` hits the always-deny list (registry.py:749-751). No em dash in this path.
+    scr:
+`<span class="hi">⏺</span> Bash(rm -rf /)
+  <span class="lo">⎿</span>  Error: guard
+     <span class="lo">[permission_mode=default]</span>
+     <span class="rev">denied: bash.always_deny.</span>
+     <span class="lo">Blocked: \`rm -rf /\` is on the
+     always-deny list (Recursive
+     root/home deletion is never
+     allowed.)</span>`,
+    proof: '<span class="hl">denied:</span> bash.always_deny.'
+  },
+  convo: {
+    name: 'convo', size: 150, tier: 'available',
+    desc: 'session analytics for Claude Code',
+    tagline: 'Receipts, not <em>recall.</em>',
+    bar: ['zsh', 'convo 2.0.1'], scrSize: 19,
+    // convo 2.0.1 prose format (read/prose.py:60-73), captured 2026-10-02
+    scr:
+`<span class="lo">$</span> convo search 'force push' \\
+    --project ~/develop/guard --limit 1
+<span class="hi">convo search 'force push' -- 1 hits</span>
+
+<span class="lo">--- hit 1 of 1 ---</span>
+<span class="lo">session:</span> e2ab3361
+<span class="lo">when:</span>    2026-05-19 18:33:29Z
+<span class="lo">project:</span> guard
+<span class="lo">kind:</span>    tool_result (from Read)
+<span class="lo">output:</span> ...tdout, _stderr = _run("git <span class="rev">[push] --[force]</span>", cwd=tmp_path, decisions_...`,
+    proof: "convo search <span class=\"hl\">'force push'</span>"
+  },
+  convostats: {
+    name: 'convo', size: 150, tier: 'available',
+    desc: 'session analytics for Claude Code',
+    tagline: 'Receipts, not <em>recall.</em>',
+    bar: ['zsh', 'convo 2.0.1'], scrSize: 16.5,
+    // convo 2.0.1 `convo stats tools`, verbatim first rows, captured 2026-10-02
+    scr:
+`<span class="lo">$</span> convo stats tools
+<span class="lo">total</span>  <span class="rev">215462</span>
+
+<span class="lo">top by frequency:</span>
+  <span class="lo">tool                                   count</span>
+  <span class="lo">------------------------------------  ------</span>
+  <span class="hi">Bash</span>                                  103213
+  <span class="hi">Read</span>                                   35378
+  <span class="hi">Edit</span>                                   26789
+  <span class="hi">Write</span>                                   7438
+  <span class="hi">StructuredOutput</span>                        7310`,
+    proof: 'total <span class="hl">215462</span> tool calls'
+  },
+  evalkit: {
+    name: 'eval-kit', size: 112, tier: 'beta',
+    desc: 'eval statistics for Claude Code',
+    tagline: 'Math, not <em>vibes.</em>',
+    bar: ['zsh', 'eval-kit 0.1.0'], scrSize: 18,
+    // eval-kit 0.1.0 README "Command line" example, verbatim. NOT on public main (b9ad0d8) yet.
+    scr:
+`<span class="lo">$</span> eval-kit compare --baseline base.json \\
+    --variant new.json --target 3
+<span class="hi">eval-kit compare: Welch's t-test, independent runs</span>
+  <span class="lo">baseline</span>  n=4  mean 81.25
+  <span class="lo">variant</span>   n=4  mean 83.95
+  <span class="lo">shift</span>     +2.70  95% CI [-0.84, +6.24]
+  <span class="lo">p</span>         0.111
+  <span class="lo">glassD</span>    1.31
+  <span class="lo">target</span>    3 (higher is better)
+
+<span class="rev">CAN'T TELL YET.</span> The 95% CI includes both no change and a 3-point shift.
+Resolving it takes 16 runs per arm at the spread seen so far; you have 4.`,
+    proof: "<span class=\"hl\">CAN'T TELL YET.</span> 16 runs per arm"
+  },
+  tracine: {
+    org: true, name: 'tracine', size: 124,
+    desc: 'Infrastructure for safe, observable AI development',
+    pillars: 'Safety <b>·</b> Observability <b>·</b> Evaluation',
+    bar: ['tracine terminal', 'TracineHQ'], scrSize: 24,
+    scr:
+`<span class="lo">C:\\TRACINE&gt;</span> dir
+
+<span class="hi">GUARD     </span>  <span class="lo">&lt;DIR&gt;</span>  AVAILABLE
+<span class="hi">CONVO     </span>  <span class="lo">&lt;DIR&gt;</span>  AVAILABLE
+<span class="hi">EVAL-KIT  </span>  <span class="lo">&lt;DIR&gt;</span>  BETA
+<span class="hi">TRIAGE    </span>  <span class="lo">&lt;DIR&gt;</span>  <span class="lo">COMING SOON</span>
+
+<span class="lo">C:\\TRACINE&gt;</span> <span class="cur"></span>`,
+    proof: 'guard <span class="hl">·</span> convo <span class="hl">·</span> eval-kit'
+  }
+};
+const c = cards[P];
+const badge = c.tier ? `<span class="badge b-${c.tier}">${c.tier}</span>` : '';
+const root = document.getElementById('root');
+if (S === 'quiet') {
+  root.innerHTML = `
+  <div class="qt ${c.org ? 'org' : ''}">
+    <div class="top"><span class="owner">${MARK}${c.org ? 'TracineHQ' : 'TracineHQ /'}</span>${badge}</div>
+    <div class="name">${c.name}</div>
+    <div class="desc">${c.desc}</div>
+    <div class="proof">${c.proof}</div>
+    <div class="bottom"><span class="tagline">${c.org ? '<span style="font:600 24px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">' + c.pillars + '</span>' : c.tagline}</span><span class="url">tracine.dev</span></div>
+  </div>`;
+} else {
+  root.innerHTML = `
+  <div class="ph ${c.org ? 'org' : ''}">
+    <div class="left">
+      <span class="owner">${MARK}${c.org ? 'TracineHQ' : 'TracineHQ /'}</span>
+      <div class="name" style="--name-size:${c.size}px">${c.name}</div>
+      <div class="desc">${c.desc}</div>
+      ${badge}
+      ${c.org ? `<div class="pillars">${c.pillars}</div>` : `<div class="tagline">${c.tagline}</div>`}
+    </div>
+    <div class="right">
+      <div class="crt"><div class="glass">
+        <div class="bar"><span>${c.bar[0]}</span><span>${c.bar[1]}</span></div>
+        <div class="scr" style="--scr-size:${c.scrSize || 20}px">${c.scr}</div>
+      </div></div>
+      <div class="foot">tracine.dev</div>
+    </div>
+  </div>`;
+}
+document.title = `${c.name} ${S}`;
+</script>
+</body>
+</html>

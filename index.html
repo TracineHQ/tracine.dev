@@ -23,7 +23,13 @@
   "url": "https://tracine.dev",
   "logo": "https://tracine.dev/favicon.png",
   "description": "Infrastructure for safe, observable AI development.",
-  "sameAs": ["https://github.com/TracineHQ"]
+  "sameAs": ["https://github.com/TracineHQ"],
+  "founder": {
+    "@type": "Person",
+    "name": "Anthony Ledesma",
+    "url": "https://anthonyledesma.com",
+    "sameAs": ["https://github.com/AnthonyLedesma", "https://www.linkedin.com/in/anthonyledesma/"]
+  }
 }
 </script>
 <style>
@@ -248,8 +254,18 @@ footer{border-top:1px solid var(--faint);margin-top:24px}
     <span>Tracine</span>
     <a href="https://github.com/TracineHQ" rel="noopener">GitHub</a>
     <span>Apache 2.0</span>
-    <span>built by&nbsp;<a href="https://github.com/AnthonyLedesma" rel="noopener">@AnthonyLedesma</a></span>
+    <span>built by&nbsp;<a href="https://anthonyledesma.com" rel="author">Anthony Ledesma</a></span>
   </div>
 </footer>
+<!-- Cloudflare Web Analytics: cookie-free, no banner needed. Production host only, so local previews stay out of the numbers. -->
+<script>
+if (location.hostname === 'tracine.dev') {
+  const s = document.createElement('script');
+  s.defer = true;
+  s.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+  s.dataset.cfBeacon = '{"token": "96b0a54784e84e16af865856cbe886c4"}';
+  document.body.appendChild(s);
+}
+</script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <!--
   GitHub social preview renderer. 1280x640 CSS px, captured at deviceScaleFactor 2 => 2560x1280.
   ?p=guard|convo|convostats|evalkit|plugins|tracine   ?style=phosphor (lead) | quiet (alternative)
-  Terminal text is real output: guard 1.5.0 (always-deny path), convo 2.0.1, eval-kit 0.1.0 README example.
+  Terminal text is real output: guard 1.5.0 (always-deny path), convo 2.1.0, eval-kit 0.1.0 README example.
 -->
 <style>
 @font-face{font-family:"Inter";src:url("../fonts/inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900}
@@ -100,8 +100,8 @@ const cards = {
     name: 'convo', size: 150, tier: 'available',
     desc: 'session analytics for Claude Code',
     tagline: 'Receipts, not <em>recall.</em>',
-    bar: ['zsh', 'convo 2.0.1'], scrSize: 19,
-    // convo 2.0.1 prose format (read/prose.py:60-73), captured 2026-10-02
+    bar: ['zsh', 'convo 2.1.0'], scrSize: 19,
+    // convo 2.1.0 prose format (read/prose.py:60-75; tool_result hits print no position), captured 2026-10-02
     scr:
 `<span class="lo">$</span> convo search 'force push' \\
     --project ~/develop/guard --limit 1
@@ -119,8 +119,8 @@ const cards = {
     name: 'convo', size: 150, tier: 'available',
     desc: 'session analytics for Claude Code',
     tagline: 'Receipts, not <em>recall.</em>',
-    bar: ['zsh', 'convo 2.0.1'], scrSize: 16.5,
-    // convo 2.0.1 `convo stats tools`, verbatim first rows, captured 2026-10-02
+    bar: ['zsh', 'convo 2.1.0'], scrSize: 16.5,
+    // convo 2.1.0 `convo stats tools` (format unchanged since 2.0.1), verbatim first rows, captured 2026-10-02
     scr:
 `<span class="lo">$</span> convo stats tools
 <span class="lo">total</span>  <span class="rev">215462</span>
